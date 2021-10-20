@@ -3,16 +3,20 @@ import yfinance as yf
 import os
 from os.path import exists
 from datetime import date
+import time
 
 class Main():
     def firstRun():
         f = open('conf.cfg', 'a')
-        f.write('{"firstRunDate", "' + str(date.today()) + '", "mainProfile": "main.prf"}')
+        f.write('{"firstRunDate": "' + str(date.today()) + '", "mainProfile": "main.prf"}')
         f.close()
-
     def startUp():
         if exists('./conf.cfg'):
-            return True
+            config = json.loads(open("conf.cfg", "r").readline())
+            profile = json.loads(open(config['mainProfile']).readline())
+            balance = profile['balance']
+            portfolio = profile['port']
+            return [balance, portfolio]
         else:
             Main.firstRun()
             return False
@@ -26,19 +30,21 @@ class Main():
             f = open('main.prf', 'a')
             f.write('{"profilename": "main", "port": ' + str(portfolio) + ', "balance": ' + str(balance) + '}')
             f.close
-    def mainMenu():
+    def mainMenu(bal, port):
         print("1. Check Balance")
         print("2. Check Portfolio")
         print("3. Buy Stock")
         print("4. Sell Stock")
         print("5. Advance Day")
         print("6. test")
+        print("7. Close")
 
         awn = input("> ")
-        return awn
-    def checkOption(opt):
+        Main.checkOption(awn, bal, port)
+    def checkOption(awn, balance, portfolio):
         if awn == "1":
-            input()
+            print("Balance: " + str(balance))
+            input("Press any key to continue")
         if awn == "2":
             input()
         if awn == "3":
@@ -51,12 +57,18 @@ class Main():
         if awn == "6":
             print("Enter new balance")
             balance = int(input("> "))
+        if awn == "7":
+            Main.onClose()
+            exit()
+        Main.mainMenu(balance, portfolio)
 onrun = Main.startUp()
 balance = 200
 portfolio = []
 
-awn = Main.mainMenu()
+if onrun == False:
+    time.sleep(0)
+else:
+    balance = onrun[0]
+    portfolio = onrun[1]
 
-Main.checkOption(awn)
-
-Main.onClose()
+awn = Main.mainMenu(balance, portfolio)
