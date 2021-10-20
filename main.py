@@ -12,6 +12,7 @@ class Main():
         f.write('{"firstRunDate": "' + str(date.today()) + '", "mainProfile": "main.prf"}')
         f.close()
     def startUp():
+        click.clear()
         if exists('./conf.cfg'):
             config = json.loads(open("conf.cfg", "r").readline())
             profile = json.loads(open(config['mainProfile']).readline())
@@ -32,6 +33,7 @@ class Main():
             f.write('{"profilename": "main", "port": ' + str(portfolio) + ', "balance": ' + str(balance) + '}')
             f.close
     def mainMenu(bal, port):
+        click.clear()
         print("1. Check Balance")
         print("2. Check Portfolio")
         print("3. Buy Stock")
@@ -63,6 +65,7 @@ class Main():
             Main.onClose()
             exit()
         Main.mainMenu(balance, portfolio)
+        
 onrun = Main.startUp()
 balance = 200
 portfolio = []
