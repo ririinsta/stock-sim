@@ -22,15 +22,22 @@ class Main():
         else:
             Main.firstRun()
             return False
-    def onClose():
+    def onClose(bal, port):
         if exists('./main.prf'):
+            click.clear()
+            #print('Removing Current Profile')
             os.remove('main.prf')
-            f = open('main.prf', 'a')
-            f.write('{"profilename": "main", "port": ' + str(portfolio) + ', "balance": ' + str(balance) + '}')
-            f.close
+            #input()
+            #print('done')
+            f = open("main.prf", "a")
+            #print('Making and Setting new profile')
+            f.write('{"profilename": "main", "port": ' + str(port) + ', "balance": ' + str(bal) + '}')
+            f.close()
+            #print('closing')
+            #input()
         else: 
             f = open('main.prf', 'a')
-            f.write('{"profilename": "main", "port": ' + str(portfolio) + ', "balance": ' + str(balance) + '}')
+            f.write('{"profilename": "main", "port": ' + str(port) + ', "balance": ' + str(bal) + '}')
             f.close
     def mainMenu(bal, port):
         click.clear()
@@ -62,7 +69,7 @@ class Main():
             print("Enter new balance")
             balance = int(input("> "))
         if awn == "7":
-            Main.onClose()
+            Main.onClose(balance, portfolio)
             exit()
         Main.mainMenu(balance, portfolio)
         
