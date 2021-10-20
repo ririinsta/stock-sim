@@ -4,6 +4,7 @@ import os
 from os.path import exists
 from datetime import date
 import time
+import click
 
 class Main():
     def firstRun():
@@ -42,6 +43,7 @@ class Main():
         awn = input("> ")
         Main.checkOption(awn, bal, port)
     def checkOption(awn, balance, portfolio):
+        click.clear()
         if awn == "1":
             print("Balance: " + str(balance))
             input("Press any key to continue")
