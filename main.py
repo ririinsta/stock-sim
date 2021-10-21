@@ -1,5 +1,5 @@
 import json
-import yfinance as yf
+import yfn
 import os
 from os.path import exists
 from datetime import date
@@ -61,17 +61,21 @@ class Main():
         if awn == "3":
             print("What stock?")
             stock = input("> ")
+            returned = Main.purchaseStock(stock, balance, portfolio)
         if awn == "4":
             input()
         if awn == "5":
             input()
         if awn == "6":
-            print("Enter new balance")
-            balance = int(input("> "))
+            stonk = yfn.download("AAPL", period="1d")
+            print(stonk)
+            input()
         if awn == "7":
             Main.onClose(balance, portfolio)
             exit()
         Main.mainMenu(balance, portfolio)
+    def purchaseStock(stock, balance, portfolio):
+        return [balance, portfolio]
 onrun = Main.startUp()
 balance = 200
 portfolio = []
