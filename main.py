@@ -62,6 +62,8 @@ class Main():
             print("What stock?")
             stock = input("> ")
             returned = Main.purchaseStock(stock, balance, portfolio)
+            balance = returned[0]
+            portfolio = returned[1]
         if awn == "4":
             input()
         if awn == "5":
