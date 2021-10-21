@@ -72,7 +72,6 @@ class Main():
             Main.onClose(balance, portfolio)
             exit()
         Main.mainMenu(balance, portfolio)
-        
 onrun = Main.startUp()
 balance = 200
 portfolio = []
