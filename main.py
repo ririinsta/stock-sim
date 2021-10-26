@@ -77,6 +77,10 @@ class Main():
             exit()
         Main.mainMenu(balance, portfolio)
     def purchaseStock(stock, balance, portfolio):
+        jsontest = '{"name": "aapl", "priceatbuy": "140", "amount": "2"}'
+        portfolio.append(jsontest)
+        print(portfolio)
+        input()
         return [balance, portfolio]
 onrun = Main.startUp()
 balance = 200
