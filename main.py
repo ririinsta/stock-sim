@@ -6,6 +6,10 @@ from os.path import exists
 from datetime import date
 import time
 import click
+import requests
+
+version = "ghb0.0.01"
+updateurl = "https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/ver"
 
 class Main():
     def firstRun():
@@ -52,6 +56,7 @@ class Main():
         print("4. Sell Stock")
         print("5. Advance Day")
         print("6. test")
+        print("i. Info")
         print("7. Close")
 
         awn = input("> ")
@@ -90,6 +95,14 @@ class Main():
         if awn == "7":
             Main.onClose(balance, portfolio)
             exit()
+        if awn == "I" or "i":
+            print("Made by Riri")
+            print("Version: ghb0.0.01")
+            print("Press U to check for updates")
+            inp = input("Waiting for user input > ")
+            if inp == "U" or "u":
+                updatefile = requests.get(updateurl)
+                open('tempupdfile.temp', 'wb').write(updatefile.content)
         Main.mainMenu(balance, portfolio)
     def purchaseStock(stock, balance, portfolio):
         stonk = yfn.download(stock, period="1d")
