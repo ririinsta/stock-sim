@@ -97,7 +97,7 @@ class Main():
             exit()
         if awn == "I" or "i":
             print("Made by Riri")
-            print("Version: ghb0.0.01")
+            print("Version: " + version)
             print("Press U to check for updates")
             inp = input("Waiting for user input > ")
             if inp == "U" or "u":
