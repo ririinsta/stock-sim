@@ -17,7 +17,7 @@ class Main():
             config = json.loads(open("conf.cfg", "r").readline())
             test = open(config['mainProfile']).readline()
             profile = json.loads(test)
-            balance = profile['balance']
+            balance = profile['bal']
             portfolio = profile['port']
             return [balance, portfolio]
         else:
@@ -79,7 +79,8 @@ class Main():
             for item in portfolio:
                 if item.split()[0] == among:
                     print(item)
-            input()
+            print("")
+            input("Press any key to continue")
         if awn == "5":
             input()
         if awn == "6":
@@ -97,6 +98,7 @@ class Main():
         print(portfolio)
         input()
         return [balance, portfolio]
+
 onrun = Main.startUp()
 balance = 200
 portfolio = []
