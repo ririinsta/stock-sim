@@ -92,17 +92,34 @@ class Main():
             stonk = yfn.download("AAPL", period="1d")
             print(stonk)
             input()
-        if awn == "7":
-            Main.onClose(balance, portfolio)
-            exit()
-        if awn == "I" or "i":
+        if awn == "i":
             print("Made by Riri")
             print("Version: " + version)
             print("Press U to check for updates")
             inp = input("Waiting for user input > ")
-            if inp == "U" or "u":
+            if inp == "U":
                 updatefile = requests.get(updateurl)
                 open('tempupdfile.temp', 'wb').write(updatefile.content)
+                ver = open('tempupdfile.temp', "r").readline()
+                if ver == version:
+                    print("Up to date!")
+                    input("Press any key to continue")
+                else:
+                    print("Current Version: " + version)
+                    print("New Version: " + ver)
+                    input("Press any key to update.")
+            if inp == "CSTM-PKG":
+                ver = open('tempupdfile.temp', "r").readline()
+                if ver == version:
+                    print("Up to date!")
+                    input("Press any key to continue")
+                else:
+                    print("Current Version: " + version)
+                    print("New Version: " + ver)
+                    input("Press any key to update.")
+        if awn == "7":
+            Main.onClose(balance, portfolio)
+            exit()
         Main.mainMenu(balance, portfolio)
     def purchaseStock(stock, balance, portfolio):
         stonk = yfn.download(stock, period="1d")
