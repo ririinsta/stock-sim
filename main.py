@@ -13,18 +13,12 @@ class Main():
         f.write('{"firstRunDate": "' + str(date.today()) + '", "mainProfile": "main.prf"}')
         f.close()
     def startUp():
-        #click.clear()
         if exists('./conf.cfg'):
             config = json.loads(open("conf.cfg", "r").readline())
-            print("Config loaded")
             test = open(config['mainProfile']).readline()
-            print(test)
             profile = json.loads(test)
-            print("Profile Loaded")
             balance = profile['balance']
-            print("Balance Loaded " + str(balance) + " in wallet")
             portfolio = profile['port']
-            print("Portfolio Loaded " + str(portfolio) + " array")
             return [balance, portfolio]
         else:
             Main.firstRun()
@@ -32,12 +26,8 @@ class Main():
     def onClose(bal, port):
         if exists('./main.prf'):
             click.clear()
-            #print('Removing Current Profile')
             os.remove('main.prf')
-            #input()
-            #print('done')
             f = open("main.prf", "a")
-            #print('Making and Setting new profile')
             x = {
                 "profilename": "main",
                 "bal": bal,
@@ -45,8 +35,6 @@ class Main():
             }
             f.write(json.dumps(x))
             f.close()
-            #print('closing')
-            #input()
         else: 
             f = open("main.prf", "a")
             x = {
