@@ -13,12 +13,18 @@ class Main():
         f.write('{"firstRunDate": "' + str(date.today()) + '", "mainProfile": "main.prf"}')
         f.close()
     def startUp():
-        click.clear()
+        #click.clear()
         if exists('./conf.cfg'):
             config = json.loads(open("conf.cfg", "r").readline())
-            profile = json.loads(open(config['mainProfile']).readline())
+            print("Config loaded")
+            test = open(config['mainProfile']).readline()
+            print(test)
+            profile = json.loads(test)
+            print("Profile Loaded")
             balance = profile['balance']
+            print("Balance Loaded " + str(balance) + " in wallet")
             portfolio = profile['port']
+            print("Portfolio Loaded " + str(portfolio) + " array")
             return [balance, portfolio]
         else:
             Main.firstRun()
@@ -32,14 +38,24 @@ class Main():
             #print('done')
             f = open("main.prf", "a")
             #print('Making and Setting new profile')
-            f.write('{"profilename": "main", "port": ' + str(port) + ', "balance": ' + str(bal) + '}')
+            x = {
+                "profilename": "main",
+                "bal": bal,
+                "port": port
+            }
+            f.write(json.dumps(x))
             f.close()
             #print('closing')
             #input()
         else: 
-            f = open('main.prf', 'a')
-            f.write('{"profilename": "main", "port": ' + str(port) + ', "balance": ' + str(bal) + '}')
-            f.close
+            f = open("main.prf", "a")
+            x = {
+                "profilename": "main",
+                "bal": bal,
+                "port": port
+            }
+            f.write(json.dumps(x))
+            f.close()
     def mainMenu(bal, port):
         click.clear()
         print("1. Check Balance")
@@ -88,7 +104,7 @@ class Main():
         Main.mainMenu(balance, portfolio)
     def purchaseStock(stock, balance, portfolio):
         stonk = yfn.download(stock, period="1d")
-        jsontest = "" + stock + "," +str(round(stonk['High'][str(date.today())], 2)) + "," + "1" + ""
+        jsontest = r"" + stock + r"," +str(round(stonk['High'][str(date.today())], 2)) + r"," + r"1" + r""
         portfolio.append(jsontest)
         print(portfolio)
         input()
