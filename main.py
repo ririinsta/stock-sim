@@ -1,4 +1,5 @@
 import json
+from typing import ItemsView
 import yfn
 import os
 from os.path import exists
@@ -57,6 +58,11 @@ class Main():
             print("Balance: " + str(balance))
             input("Press any key to continue")
         if awn == "2":
+            index = 0
+            for item in portfolio:
+                index = index + 1
+                itemarray = item.split(",")
+                print(str(index) + ". " + itemarray[2] + " " + itemarray[0] + " bought at " + itemarray[1] + " a piece")
             input()
         if awn == "3":
             print("What stock?")
@@ -77,7 +83,8 @@ class Main():
             exit()
         Main.mainMenu(balance, portfolio)
     def purchaseStock(stock, balance, portfolio):
-        jsontest = '{"name": "aapl", "priceatbuy": "140", "amount": "2"}'
+        stonk = yfn.download(stock, period="1d")
+        jsontest = "" + stock + "," +str(round(stonk['High'][str(date.today())], 2)) + "," + "1" + ""
         portfolio.append(jsontest)
         print(portfolio)
         input()
