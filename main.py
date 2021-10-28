@@ -71,6 +71,10 @@ class Main():
             balance = returned[0]
             portfolio = returned[1]
         if awn == "4":
+            among = input()
+            for item in portfolio:
+                if item.split()[0] == among:
+                    print(item)
             input()
         if awn == "5":
             input()
