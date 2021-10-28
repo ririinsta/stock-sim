@@ -2,3 +2,4 @@ conf.cfg
 main.prf
 testing.py
 yfn\__pycache__\
+*.pyc
