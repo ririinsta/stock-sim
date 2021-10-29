@@ -8,7 +8,7 @@ import time
 import click
 import requests
 
-version = "ghb0.0.01"
+version = "ghb0.0.00"
 updateurl = "https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/ver"
 
 class Main():
@@ -89,8 +89,7 @@ class Main():
         if awn == "5":
             input()
         if awn == "6":
-            stonk = yfn.download("AAPL", period="1d")
-            print(stonk)
+            print(os.getpid())
             input()
         if awn == "i":
             print("Made by Riri")
@@ -108,6 +107,10 @@ class Main():
                     print("Current Version: " + version)
                     print("New Version: " + ver)
                     input("Press any key to update.")
+                    update = requests.get("https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/update.py")
+                    open('update.py', 'wb').write(update.content)
+                    os.system("powershell -Command 'python3.9 update.py" + str(os.getpid()) + "'")
+                os.remove("tempupdfile.temp")
             if inp == "CSTM-PKG":
                 ver = open('tempupdfile.temp', "r").readline()
                 if ver == version:
