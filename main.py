@@ -109,8 +109,9 @@ class Main():
                     input("Press any key to update.")
                     update = requests.get("https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/update.py")
                     open('update.py', 'wb').write(update.content)
-                    #os.system("python3.9 update.py " + str(os.getpid()) + "'")
-                    os.system("taskkill /f /pid " + str(os.getpid()))
+                    updatebat = requests.get("https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/update.bat")
+                    open('update.bat', 'wb').write(updatebat.content)
+                    os.system(".\\update.bat " + str(os.getpid()))
                 os.remove("tempupdfile.temp")
             if inp == "CSTM-PKG":
                 ver = open('tempupdfile.temp', "r").readline()
