@@ -1,0 +1,6 @@
+main.prf
+*.pyc
+conf.cfg
+*.prf
+*.temp
+testing.py
