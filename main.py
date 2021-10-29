@@ -8,7 +8,7 @@ import time
 import click
 import requests
 
-version = "ghb0.0.00"
+version = "ghb0.0.02"
 updateurl = "https://raw.githubusercontent.com/ririinsta/stock-sim/main/info%20for%20program/ver"
 
 class Main():
